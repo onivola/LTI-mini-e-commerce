@@ -1,0 +1,52 @@
+<div class="container-xl">
+    <div class="p-3 text-white bg-success  mt-5 me-1 mb-5 ms-1 text-center">Confirmation des comptes</div>
+    <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Rechercher un nom"
+              [(ngModel)]="nom"
+            />
+            <div class="input-group-append  ms-3">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="searchName()"
+              >
+                Rechercher
+              </button>
+            </div>
+          </div>
+    <table class="table table-bordered border">
+            <thead  class="bg-success p-2" style="--bs-bg-opacity: .5;">
+              <tr>
+                <th scope="col">#id</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Email</th>
+                <th scope="col">Mail active</th>
+                <th scope="col">admin active</th>
+                <th scope="col">Date d'inscription</th>
+                <th scope="col">Bouton</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let utilisateur of utilisateurs; let i = index"
+              [class.active]="i == currentIndex"
+              >
+                <th scope="row">{{ utilisateur.id }}</th>
+                <td>{{ utilisateur.nom }}</td>
+                <td>{{ utilisateur.prenom }}</td>
+                <td>{{ utilisateur.email }}</td>
+                <th>{{ utilisateur.activeMail }}</th>
+                <td>{{ utilisateur.activeAdmin }}</td>
+                <td>{{ utilisateur.createdAt }}</td>
+                <td>
+                    <button *ngIf="utilisateur.activeAdmin==false" (click)="setActiveUtilisateur(utilisateur, utilisateur.id)" type="button" class="btn btn-success">Activer</button>
+                    <button *ngIf="utilisateur.activeAdmin" (click)="setDesactiveUtilisateur(utilisateur, utilisateur.id)" type="button" class="btn btn-warning">Desactiver</button>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+</div>

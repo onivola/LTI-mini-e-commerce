@@ -1,0 +1,86 @@
+
+    <form [formGroup]="loginForm">
+
+
+  
+    <div>
+        <label for="exampleInputEmail1" class="form-label">Addresse mail</label>
+        <input [ngClass]="{'is-invalid': loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)}" formControlName="email" [(ngModel)]="emailg" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <small *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required','email')" class="text-danger">*Saisissez votre adresse e-mail</small>
+    <div>
+        <label for="exampleInputPassword1"  class="form-label">Mot de passe</label>
+        <input [class.is-invalid]="loginForm.controls['mdp'].dirty && loginForm.hasError('required','mdp')"  formControlName="mdp" [(ngModel)]="mdpg" type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <small *ngIf="loginForm.controls['mdp'].dirty && loginForm.hasError('required','mdp')" class="text-danger">*Saisissez votre mot de passe</small>
+    <small *ngIf="loginivalid" class="text-danger">
+        *adresse mail ou mot de passe incorrect
+    </small>
+    
+    
+    <div class="mt-3 me-1 mb-3 ms-1 ">
+        <button (click)="onSubmit()"  type="submit" class="btn btn-primary">Se connecter</button>
+    </div>
+</form>
+    <div>
+            <!-- Button trigger modal [disabled]="loginForm.invalid" -->
+        <!--<a type="button" class="text-decoration-none mt-1 me-1 mb-5 ms-1 " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                
+        </a>-->
+        <!-- Button trigger modal -->
+<a type="button" class="text-decoration-none mt-1 me-1 mb-5 ms-1 " data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Créer un nouveau compte
+</a>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Créer un nouveau compte</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!--FORMULAIRE INSCRIPTION-->
+            <form [formGroup]="signUpForm">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nom</label>
+                    <input [class.is-invalid]="signUpForm.controls['nom'].dirty && signUpForm.hasError('required','nom')" formControlName="nom" [(ngModel)]="userSup.nom" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    
+                </div>
+                <small *ngIf="signUpForm.controls['nom'].dirty && signUpForm.hasError('required','nom')" class="text-danger">*Saisissez votre nom</small>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Prénom</label>
+                    <input [class.is-invalid]="signUpForm.controls['prenom'].dirty && signUpForm.hasError('required','prenom')" formControlName="prenom" [(ngModel)]="userSup.prenom"  type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <small *ngIf="signUpForm.controls['prenom'].dirty && signUpForm.hasError('required','prenom')" class="text-danger">*Saisissez votre prenom</small>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Addresse mail</label>
+                  <input [ngClass]="{'is-invalid': signUpForm.controls['emails'].invalid && (signUpForm.controls['emails'].dirty || signUpForm.controls['emails'].touched)}"  formControlName="emails" [(ngModel)]="userSup.email"  class="form-control" type="text"/>
+                  <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+                </div>
+                <small *ngIf="signUpForm.controls['emails'].dirty && signUpForm.hasError('required','emails')" class="text-danger">*Saisissez une adresse e-mail valid</small>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
+                  <input [class.is-invalid]="signUpForm.controls['mdps'].dirty && signUpForm.hasError('required','mdps')" formControlName="mdps" [(ngModel)]="userSup.mdp" type="password"  class="form-control" id="exampleInputPassword1">
+                </div>
+                
+                <small *ngIf="signUpForm.controls['mdps'].dirty && signUpForm.hasError('required','mdps')" class="text-danger">*Saisissez votre mot de passe</small>  
+                <div *ngIf="inscrit" class="alert alert-success" role="alert">
+                    Vous ete inscrit
+                  </div>
+                <div class="mb-3">
+                    <button (click)="onSingup()" type="submit" class="btn btn-primary">Sinscrire</button>
+                </div>
+               
+            </form>
+            <!--FORMULAIRE INSCRIPTION-->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        <div class=" mt-1 me-1 mb-5 ms-1 "></div>
+    </div>
